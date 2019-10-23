@@ -12,7 +12,7 @@ import { Asset } from "expo-asset";
 import { AppLoading } from "expo";
 import { Provider } from "react-redux";
 import store from "./src/store";
-import PatientListScreen from "./src/screens/PatientListScreen";
+import PatientListScreen from "./src/screens/PatientList";
 import PrescriptionListScreen from "./src/screens/PrescriptionListScreen";
 import InterventionScreen from "./src/screens/InterventionScreen";
 import AuthLoadingScreen from "./src/screens/AuthLoadingScreen";

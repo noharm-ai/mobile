@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { StyleSheet } from "react-native";
 import {
   Text,
   Content,
@@ -11,8 +12,11 @@ import {
   Spinner,
   Icon,
   Fab,
-  Toast
+  Toast,
+  View
 } from "native-base";
+import Moment from "moment";
+import { Chip } from "react-native-paper";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { requestPrescription } from "../store/ducks/prescription";
@@ -33,17 +37,36 @@ class PrescriptionListScreen extends Component {
     this.props.requestPrescription(id);
   }
 
+  chip(text) {
+    return <Chip style={styles.chip}>{text}</Chip>;
+  }
+
   render() {
     if (this.props.loading) {
       return <Spinner />;
     }
 
+    const age = Moment().diff(this.props.patient.birthdate, "years");
+
     return (
       <Container>
         <Content padder>
           <PatientHeader patient={this.props.patient} />
+          <View style={styles.chipContainer}>
+            {this.chip(`${age} anos`)}
+            {this.chip(
+              this.props.patient.gender === "F" ? "Feminino" : "Masculino"
+            )}
+            {this.chip(`${this.props.patient.weight}kg`)}
+            {this.chip(this.props.patient.race === "B" ? "Branco" : "Negro")}
+            {this.chip(`Risco: ${this.props.patient.risk}`)}
+            {this.chip("Creatinina: 1,08")}
+            {this.chip("MDRD: 72")}
+            {this.chip("TGO: 41")}
+            {this.chip("TGP: 24")}
+          </View>
 
-          <Text style={{ marginTop: 20 }}>Medicamentos</Text>
+          <Text style={{ marginTop: 10 }}>Medicamentos</Text>
           <List>
             {this.props.patient.prescription.map(p => (
               <ListItem
@@ -91,6 +114,20 @@ class PrescriptionListScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  chipContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    marginTop: 20
+  },
+  chip: {
+    marginHorizontal: 2,
+    marginVertical: 2
+  }
+});
 
 const mapStateToProps = ({ prescription }) => ({
   loading: prescription.loading,
