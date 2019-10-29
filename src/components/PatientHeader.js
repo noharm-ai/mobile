@@ -5,9 +5,9 @@ import PatientAvatar from "./PatientAvatar";
 
 export default function PatientHeader(props) {
   return (
-    <View style={{ flexDirection: "row", marginTop: 10, marginLeft: 7 }}>
+    <View style={{ marginTop: 10, alignItems: "center" }}>
       <PatientAvatar score={props.patient.prescriptionScore} large aggregated />
-      <View style={{ marginLeft: 15, flex: 1 }}>
+      <View style={{ alignItems: "center", marginTop: 5 }}>
         <Text style={{ fontSize: 20 }}>{props.patient.name}</Text>
         <Text note>Risco da prescrição: {props.patient.prescriptionScore}</Text>
         <Text note>

@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { AnimatedCircularProgress } from "react-native-circular-progress";
 
 export default function PatientAvatar(props) {
   function getAggregatedScoreStyle(score) {
@@ -31,43 +32,56 @@ export default function PatientAvatar(props) {
   }
 
   const score = parseInt(props.score, 10);
-  let avatarStyle = props.aggregated
-    ? getAggregatedScoreStyle(score)
-    : getScoreStyle(score);
+  const width = props.large ? 70 : 40;
+  const borderRadius = width / 2;
+  let avatarStyle;
 
-  if (props.large) {
-    avatarStyle = {
-      ...avatarStyle,
-      width: 50,
-      height: 50,
-      borderRadius: 30
-    };
+  if (props.user) {
+    avatarStyle = styles.user;
+  } else {
+    avatarStyle = props.aggregated
+      ? getAggregatedScoreStyle(score)
+      : getScoreStyle(score);
   }
 
-  return <View style={avatarStyle} />;
-}
+  avatarStyle = {
+    ...avatarStyle,
+    width: width,
+    height: width,
+    borderRadius: borderRadius
+  };
 
-let baseAvatar = {
-  width: 40,
-  height: 40,
-  borderRadius: 20
-};
+  return (
+    <View style={avatarStyle}>
+      <AnimatedCircularProgress
+        size={width}
+        width={5}
+        fill={100}
+        tintColor={avatarStyle.color}
+      />
+    </View>
+  );
+}
 
 let styles = StyleSheet.create({
   danger: {
-    ...baseAvatar,
-    backgroundColor: "#f44336"
+    color: "#f44336",
+    backgroundColor: "rgba(244, 67, 54, .6)"
   },
   alert: {
-    ...baseAvatar,
-    backgroundColor: "#FFC107"
+    color: "#FFC107",
+    backgroundColor: "rgba(255, 193, 7, .6)"
   },
   warning: {
-    ...baseAvatar,
-    backgroundColor: "#FFEB3B"
+    color: "#fdd835",
+    backgroundColor: "rgba(255, 235, 59, .6)"
   },
   default: {
-    ...baseAvatar,
-    backgroundColor: "#8BC34A"
+    color: "#8BC34A",
+    backgroundColor: "rgba(139, 195, 74, .6)"
+  },
+  user: {
+    color: "#FFFFFF",
+    backgroundColor: "rgba(255, 255, 255, .6)"
   }
 });

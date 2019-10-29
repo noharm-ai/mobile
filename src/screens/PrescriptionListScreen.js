@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Alert, ScrollView } from "react-native";
 import {
   Text,
   Content,
@@ -22,6 +22,7 @@ import { bindActionCreators } from "redux";
 import { requestPrescription } from "../store/ducks/prescription";
 import PatientAvatar from "../components/PatientAvatar";
 import PatientHeader from "../components/PatientHeader";
+import ExamResult from "../components/ExamResult";
 
 class PrescriptionListScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -60,11 +61,21 @@ class PrescriptionListScreen extends Component {
             {this.chip(`${this.props.patient.weight}kg`)}
             {this.chip(this.props.patient.race === "B" ? "Branco" : "Negro")}
             {this.chip(`Risco: ${this.props.patient.risk}`)}
-            {this.chip("Creatinina: 1,08")}
-            {this.chip("MDRD: 72")}
-            {this.chip("TGO: 41")}
-            {this.chip("TGP: 24")}
           </View>
+
+          <Text style={{ marginTop: 10 }}>Exames</Text>
+
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <ExamResult
+              exam="Creatinina"
+              value="1,08"
+              fill={90}
+              color="#e57373"
+            />
+            <ExamResult exam="MDRD" value="72" fill={50} color="#00e0ff" />
+            <ExamResult exam="TGO" value="41" fill={65} color="#00e0ff" />
+            <ExamResult exam="TGP" value="24" fill={100} color="#00e0ff" />
+          </ScrollView>
 
           <Text style={{ marginTop: 10 }}>Medicamentos</Text>
           <List>
@@ -100,12 +111,27 @@ class PrescriptionListScreen extends Component {
           position="bottomRight"
           style={{ backgroundColor: "green" }}
           onPress={() => {
-            Toast.show({
-              text: "Prescrição triada com sucesso",
-              type: "success",
-              duration: 3000,
-              buttonText: "Ok"
-            });
+            Alert.alert(
+              "Confirmar triagem",
+              "Confirma a triagem desta prescrição?",
+              [
+                {
+                  text: "Cancelar",
+                  style: "cancel"
+                },
+                {
+                  text: "OK",
+                  onPress: () =>
+                    Toast.show({
+                      text: "Prescrição triada com sucesso",
+                      type: "success",
+                      duration: 3000,
+                      buttonText: "Ok"
+                    })
+                }
+              ],
+              { cancelable: false }
+            );
           }}
         >
           <Icon type="FontAwesome" name="check" />
@@ -126,6 +152,9 @@ const styles = StyleSheet.create({
   chip: {
     marginHorizontal: 2,
     marginVertical: 2
+  },
+  examCard: {
+    width: 100
   }
 });
 

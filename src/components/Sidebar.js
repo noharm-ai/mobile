@@ -10,13 +10,17 @@ import {
   Text,
   Content,
   Container,
-  H1,
   List,
   ListItem,
   Left,
+  Right,
   Body,
-  Icon
+  Icon,
+  Button,
+  View
 } from "native-base";
+import { LinearGradient } from "expo-linear-gradient";
+import PatientAvatar from "./PatientAvatar";
 import theme from "../native-base-theme/variables/material";
 
 export default class Sidebar extends Component {
@@ -44,41 +48,55 @@ export default class Sidebar extends Component {
   render() {
     return (
       <Container style={styles.container}>
-        <Content padder style={{ backgroundColor: "#fff" }}>
+        <LinearGradient
+          colors={[theme.brandGradientStart, theme.brandGradientEnd]}
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0
+          }}
+        />
+        <Content padder>
           <Image
-            source={require("../../assets/logo_stacked.png")}
+            source={require("../../assets/logo_stacked_white.png")}
             style={{
-              height: 100,
+              height: 150,
               width: null,
               resizeMode: "contain",
               marginVertical: 15
             }}
           />
 
-          <List style={{ marginTop: 20 }}>
-            <ListItem icon>
+          <List>
+            <ListItem avatar>
               <Left>
-                <Icon
-                  active
-                  type="FontAwesome"
-                  name="user"
-                  style={styles.icon}
-                />
+                <PatientAvatar user aggregated />
               </Left>
               <Body>
-                <Text>{this.state.userName}</Text>
+                <Text style={{ color: theme.brandPrimary, fontWeight: "bold" }}>
+                  {this.state.userName}
+                </Text>
+                <Text note style={{ color: "#ffffff" }}>
+                  teste@teste.com.br
+                </Text>
               </Body>
-            </ListItem>
-
-            <ListItem icon onPress={this._signOutAsync}>
-              <Left>
-                <Icon type="FontAwesome" name="sign-out" style={styles.icon} />
-              </Left>
-              <Body>
-                <Text>Sair</Text>
-              </Body>
+              <Right></Right>
             </ListItem>
           </List>
+          <View
+            style={{
+              flexDirection: "row",
+              marginLeft: 20,
+              marginTop: 30
+            }}
+          >
+            <Button iconLeft rounded onPress={this._signOutAsync}>
+              <Icon type="FontAwesome" name="sign-out" style={styles.icon} />
+              <Text>Sair</Text>
+            </Button>
+          </View>
         </Content>
       </Container>
     );
@@ -95,13 +113,6 @@ const styles = StyleSheet.create({
     })
   },
   icon: {
-    color: theme.inputColorPlaceholder
-  },
-  logo: {
-    color: "#454545",
-    paddingTop: 10,
-    paddingBottom: 15,
-    borderBottomWidth: 1,
-    borderColor: "rgba(0,0,0,.1)"
+    color: "#FFFFFF"
   }
 });

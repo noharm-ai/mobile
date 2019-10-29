@@ -73,6 +73,7 @@ let InterventionForm = props => {
 
       <Button
         block
+        rounded
         onPress={handleSubmit(submit, props.idPrescription)}
         style={{ marginTop: 25 }}
       >

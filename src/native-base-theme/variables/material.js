@@ -124,12 +124,15 @@ export default {
 
   // Color
   brandPrimary: "#22395b",
+  brandSecondary: "#28d79d",
   brandInfo: "#62B1F6",
   brandSuccess: "#5cb85c",
   brandDanger: "#d9534f",
   brandWarning: "#f0ad4e",
   brandDark: "#000",
   brandLight: "#f4f4f4",
+  brandGradientStart: "rgb(132, 220, 193)",
+  brandGradientEnd: "rgb(0, 188, 215)",
 
   // Container
   containerBgColor: "#fff",
@@ -276,7 +279,7 @@ export default {
   titleFontColor: "#FFF",
 
   // Other
-  borderRadiusBase: 18,
+  borderRadiusBase: platform === PLATFORM.IOS ? 5 : 2,
   borderWidth: 1 / PixelRatio.getPixelSizeForLayoutSize(1),
   contentPadding: 10,
   dropdownLinkColor: "#414142",
