@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 
-export default function PatientAvatar(props) {
+export default props => {
   function getAggregatedScoreStyle(score) {
     if (score < 5) {
       return styles.default;
@@ -61,7 +61,7 @@ export default function PatientAvatar(props) {
       />
     </View>
   );
-}
+};
 
 let styles = StyleSheet.create({
   danger: {

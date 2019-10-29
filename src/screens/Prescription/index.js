@@ -19,10 +19,10 @@ import Moment from "moment";
 import { Chip } from "react-native-paper";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { requestPrescription } from "../store/ducks/prescription";
-import PatientAvatar from "../components/PatientAvatar";
-import PatientHeader from "../components/PatientHeader";
-import ExamResult from "../components/ExamResult";
+import { requestPrescription } from "app/src/store/ducks/prescription";
+import PatientAvatar from "app/src/components/PatientAvatar";
+import PatientHeader from "app/src/components/PatientHeader";
+import ExamResult from "app/src/components/ExamResult";
 
 class PrescriptionListScreen extends Component {
   static navigationOptions = ({ navigation }) => {

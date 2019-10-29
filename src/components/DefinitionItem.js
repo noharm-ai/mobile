@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { View, Text } from "native-base";
 
-export default function DefinitionItem(props) {
+export default props => {
   return (
     <View style={styles.definitionList}>
       <View style={styles.dlKey}>
@@ -13,7 +13,7 @@ export default function DefinitionItem(props) {
       </View>
     </View>
   );
-}
+};
 
 let styles = StyleSheet.create({
   definitionList: {

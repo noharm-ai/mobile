@@ -3,7 +3,7 @@ import { View, Text } from "native-base";
 import Moment from "moment";
 import PatientAvatar from "./PatientAvatar";
 
-export default function PatientHeader(props) {
+export default props => {
   return (
     <View style={{ marginTop: 10, alignItems: "center" }}>
       <PatientAvatar score={props.patient.prescriptionScore} large aggregated />
@@ -16,4 +16,4 @@ export default function PatientHeader(props) {
       </View>
     </View>
   );
-}
+};

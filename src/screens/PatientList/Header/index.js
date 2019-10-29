@@ -9,7 +9,7 @@ import {
 } from "react-native-popup-menu";
 import theme from "../../../native-base-theme/variables/material";
 
-export default function Header({
+export default ({
   headerOpacity,
   logoOpacity,
   searchOpacity,
@@ -17,7 +17,7 @@ export default function Header({
   updateSearchText,
   search,
   reorder
-}) {
+}) => {
   return (
     <Animated.View
       style={{
@@ -98,7 +98,7 @@ export default function Header({
       </Card>
     </Animated.View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   cardHeader: {

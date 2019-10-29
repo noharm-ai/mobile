@@ -3,10 +3,10 @@ import { AsyncStorage } from "react-native";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import { Form } from "native-base";
 import { Button } from "react-native-paper";
-import { renderPaperInput, ErrorMessage } from "./inputRenders";
-import { post } from "../services/api";
-import NavigationService from "../services/NavigationService";
-import theme from "../native-base-theme/variables/material";
+import { renderPaperInput, ErrorMessage } from "app/src/forms/inputRenders";
+import { post } from "app/src/services/api";
+import NavigationService from "app/src/services/NavigationService";
+import theme from "app/src/native-base-theme/variables/material";
 
 let SignInForm = props => {
   const { handleSubmit, submitting, error } = props;

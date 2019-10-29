@@ -1,9 +1,13 @@
 import React from "react";
 import { Field, reduxForm, change } from "redux-form";
 import { Text, Form, Picker, Icon, Button, Spinner, Toast } from "native-base";
-import { renderSelect, renderSwitch, renderTextarea } from "./inputRenders";
-import { post } from "../services/api";
-import NavigationService from "../services/NavigationService";
+import {
+  renderSelect,
+  renderSwitch,
+  renderTextarea
+} from "app/src/forms/inputRenders";
+import { post } from "app/src/services/api";
+import NavigationService from "app/src/services/NavigationService";
 
 let InterventionForm = props => {
   const { handleSubmit, submitting } = props;

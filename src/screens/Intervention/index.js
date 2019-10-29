@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { View, Content, Spinner } from "native-base";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { requestInterventionReasons } from "../store/ducks/intervention";
-import DefinitionItem from "../components/DefinitionItem";
-import PatientHeader from "../components/PatientHeader";
-import InterventionForm from "../forms/InterventionForm";
+import { requestInterventionReasons } from "app/src/store/ducks/intervention";
+import DefinitionItem from "app/src/components/DefinitionItem";
+import PatientHeader from "app/src/components/PatientHeader";
+import InterventionForm from "./form";
 
 class InterventionScreen extends Component {
   static navigationOptions = ({ navigation }) => {

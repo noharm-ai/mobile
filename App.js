@@ -14,10 +14,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Provider } from "react-redux";
 import store from "./src/store";
 import PatientListScreen from "./src/screens/PatientList";
-import PrescriptionListScreen from "./src/screens/PrescriptionListScreen";
-import InterventionScreen from "./src/screens/InterventionScreen";
+import PrescriptionListScreen from "./src/screens/Prescription";
+import InterventionScreen from "./src/screens/Intervention";
 import AuthLoadingScreen from "./src/screens/AuthLoadingScreen";
-import SignInScreen from "./src/screens/SignInScreen";
+import SignInScreen from "./src/screens/SignIn";
 import NavigationService from "./src/services/NavigationService";
 import theme from "./src/native-base-theme/variables/material";
 
