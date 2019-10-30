@@ -16,7 +16,8 @@ export default ({
   openDrawer,
   updateSearchText,
   search,
-  reorder
+  reorder,
+  searchText
 }) => {
   return (
     <Animated.View
@@ -32,13 +33,31 @@ export default ({
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1 }}>
-            <Animated.View style={{ flex: 1, opacity: searchOpacity }}>
+            <Animated.View
+              style={{ flex: 1, flexDirection: "row", opacity: searchOpacity }}
+            >
               <Input
                 placeholder="Procurar paciente"
                 style={{ height: 25 }}
                 onChangeText={text => updateSearchText(text)}
-                onEndEditing={search}
+                onEndEditing={() => search()}
+                value={searchText}
               />
+
+              {searchText != null && searchText !== "" && (
+                <TouchableOpacity
+                  onPress={() => {
+                    updateSearchText("");
+                    search("");
+                  }}
+                >
+                  <Icon
+                    type="FontAwesome"
+                    name="times"
+                    style={{ ...styles.iconHeader, marginRight: 10 }}
+                  />
+                </TouchableOpacity>
+              )}
             </Animated.View>
 
             <Animated.View

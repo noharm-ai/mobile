@@ -83,8 +83,13 @@ class PatientListScreen extends Component {
     this.drawer._root.open();
   };
 
-  search = () => {
-    this.props.requestPatients(this.props.searchParams);
+  search = text => {
+    const params =
+      text != null
+        ? { ...this.props.searchParams, text }
+        : this.props.searchParams;
+
+    this.props.requestPatients(params);
   };
 
   reorder = (field, direction) => {
@@ -190,6 +195,7 @@ class PatientListScreen extends Component {
                 updateSearchText={this.props.updateSearchText}
                 search={this.search}
                 reorder={this.reorder}
+                searchText={this.props.searchParams.text}
               />
               <H3 style={styles.contentTitle}>{this.props.activeSegment}</H3>
               {this.props.loading ? <Spinner /> : this.patientList()}
